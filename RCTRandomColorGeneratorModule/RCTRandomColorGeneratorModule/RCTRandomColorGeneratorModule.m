@@ -11,9 +11,12 @@
 @implementation RCTRandomColorGeneratorModule
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getName)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(generate)
 {
-return [[UIDevice currentDevice] name];
+    // 16777215 is FFFFFF
+    NSInteger *baseInt = arc4random() % 16777216;
+    NSString *hex = [NSString stringWithFormat:@"#%06X", baseInt];
+    return hex;
 }
 
 @end

@@ -32,6 +32,7 @@ target 'reactnativerandomcolorgenerator' do
   # if !ENV['CI']
   #   use_flipper!()
   # end
+  pod 'RCTRandomColorGeneratorModule', :path => '../'
 
   post_install do |installer|
     react_native_post_install(installer)
