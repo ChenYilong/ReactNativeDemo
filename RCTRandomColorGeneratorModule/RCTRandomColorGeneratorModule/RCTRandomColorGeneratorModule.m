@@ -6,17 +6,22 @@
 //
 
 #import "RCTRandomColorGeneratorModule.h"
-#import <UIKit/UIKit.h>
 
 @implementation RCTRandomColorGeneratorModule
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(generate)
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(generate:(nonnull NSNumber *)option)
 {
-    // 16777215 is FFFFFF
-    NSInteger *baseInt = arc4random() % 16777216;
-    NSString *hex = [NSString stringWithFormat:@"#%06X", baseInt];
-    return hex;
+    NSString *result;
+    if (option.integerValue == RNColorGeneratorOptionHEX) {
+        NSInteger *baseInt = arc4random() % 16777216;
+        NSString *hex = [NSString stringWithFormat:@"#%06X", baseInt];
+        result = hex;
+    } else if (option.integerValue == RNColorGeneratorOptionRGB) {
+        
+    }
+    
+    return result;
 }
 
 @end

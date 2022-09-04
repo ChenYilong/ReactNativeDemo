@@ -2,6 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { TouchableWithoutFeedback, View, Text, StyleSheet, NativeModules} from 'react-native';
 const { RandomColorGeneratorModule } = NativeModules;
 
+enum RNColorGeneratorOption {
+    HEX = 0,
+    RGB,
+}
+
 const styles = StyleSheet.create({
     app: {
         flex: 1,
@@ -11,13 +16,12 @@ const styles = StyleSheet.create({
     },
 });
 
-
-
 const App = () => {
     
     const [backgroundColor, setBackgroundColor] = useState('white');
     const randomHex = useCallback(() => {
-        const color = RandomColorGeneratorModule.generate();
+        const option = RNColorGeneratorOption.HEX;
+        const color = RandomColorGeneratorModule.generate(option);
         return color;
     }, []);
 
